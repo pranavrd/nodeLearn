@@ -1,9 +1,16 @@
 console.log(__filename);
 console.log(__dirname);
-var url = 'http://qwerlog.io./log';
 
-function log(message){
+const EventEmitter = require('events');
+
+var endP = 'http://qwerlog.io./log';
+
+class Logger extends EventEmitter{
+	log(message){
 	console.log(message);
+
+	this.emit('messageLogged', {id:1, url: endP});
+	}
 }
 
-module.exports.log = log;
+module.exports = Logger;

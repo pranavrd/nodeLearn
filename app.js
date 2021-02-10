@@ -13,8 +13,8 @@ console.log('\n');
 
 
 //load a module
-const logger = require('./logger');
-logger.log('Wassssa\n');
+//const logger = require('./logger');
+//logger.log('Wassssa\n');
 
 
 
@@ -44,10 +44,11 @@ fs.readdir('./',function(err, files){
 
 //event module
 const EventEmitter = require('events');
-const emitter = new EventEmitter();
+const Logger = require('./logger');
+const loggr = new Logger();
 
-emitter.on('messageLogged', (eventArg) => {
+loggr.on('messageLogged', (eventArg) => {
 	console.log('Listener is called\n',eventArg);
 });
 
-emitter.emit('messageLogged', {id:1, url: 'url'});
+loggr.log('wassssa');
