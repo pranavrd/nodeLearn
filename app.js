@@ -12,3 +12,9 @@ console.log('\n');
 
 
 
+//load a module
+const logger = require('./logger');
+logger.log('Wassssa\n');
+
+
+
