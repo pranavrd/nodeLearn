@@ -52,3 +52,23 @@ loggr.on('messageLogged', (eventArg) => {
 });
 
 loggr.log('wassssa');
+
+
+
+//http module
+const http = require('http');
+const server = http.createServer((req,res) => {
+	if(req.url === '/'){
+		res.write('Wassssa');
+		res.end();
+	}
+
+	if(req.url === '/abc'){
+		res.write(JSON.stringify(['a','b','c']));
+		res.end();
+	}
+});
+
+server.listen(3000);
+
+console.log('Listening on port 3000...')
