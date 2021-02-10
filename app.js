@@ -6,3 +6,9 @@ prHelo('wassssa\n');
 
 
 
+//module structure
+console.log(module);
+console.log('\n');
+
+
+
