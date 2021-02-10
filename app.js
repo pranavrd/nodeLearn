@@ -18,3 +18,11 @@ logger.log('Wassssa\n');
 
 
 
+//path module (built-in)
+const path = require('path');
+var pathObj = path.parse(__filename);
+console.log(pathObj);
+console.log('\n');
+
+
+
