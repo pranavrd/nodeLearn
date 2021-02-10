@@ -26,3 +26,10 @@ console.log('\n');
 
 
 
+//os module 
+const os = require('os');
+console.log('Total memory: ' + os.totalmem());
+console.log(`Free Memory: ${os.freemem()}`);
+console.log('\n');
+
+
