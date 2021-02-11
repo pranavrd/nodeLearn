@@ -1,6 +1,8 @@
 const express = require('express');
 const app=express();
 
+app.use(express.json());//middleware 
+
 const courses = [
     {id:1, name:'math'},
     {id:2, name:'science'},
@@ -23,6 +25,16 @@ app.get('api/doj/:dd/:mm/:yyyy', (req, res) => {
 app.get('/api/courses/:id', (req, res) => {
     let course = courses.find(c => c.id === parseInt(req.params.id));
     if(!course) res.status(404);
+    res.send(course);
+});
+
+//POST requests
+app.post('api/courses', (req, res) => {
+    let course = {
+        id: courses.length + 1, 
+        name: req.body.name
+    };
+    courses.push(course);
     res.send(course);
 });
 
