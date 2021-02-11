@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const express = require('express');
 const app=express();
 
@@ -17,7 +18,7 @@ app.get('/api/courses', (req, res) => {
 });
 
 //route params
-app.get('api/doj/:dd/:mm/:yyyy', (req, res) => {
+app.get('/api/doj/:dd/:mm/:yyyy', (req, res) => {
     res.send(req.params);
 });
 
@@ -29,7 +30,14 @@ app.get('/api/courses/:id', (req, res) => {
 });
 
 //POST requests
-app.post('api/courses', (req, res) => {
+app.post('/api/courses', (req, res) => {
+    const schema = { name: Joi.string().min(3).required()};
+    let result = Joi.valid(req.body, schema);
+    
+    if(result.error){
+        res.status(400).send('name is required');
+        return;
+    }
     let course = {
         id: courses.length + 1, 
         name: req.body.name
