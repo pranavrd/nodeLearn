@@ -46,6 +46,23 @@ app.post('/api/courses', (req, res) => {
     res.send(course);
 });
 
+
+//Update requests
+app.put('/api/courses/:id', (req, res) => {
+    let course = courses.find(c => c.id === parseInt(req.params.id));
+    if (!course) res.status(404);
+
+    const schema = { name: Joi.string().min(3).required() };
+    let result = Joi.valid(req.body, schema);
+    if (result.error) {
+        res.status(400).send('name is required');
+        return;
+    }
+
+    course.name = req.body.name;
+    res.send(course);
+});
+
 //env var
 const port=3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
